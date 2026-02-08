@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>atendilar refrigeração</title>
+
+<style>
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= TEXTURAS ================= */
+:root {
+  --texture-noise: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  --texture-paper: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  --texture-concrete: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+  --texture-grain: url("https://www.transparenttextures.com/patterns/grunge-wall.png");
+}
+
+/* ================= BODY ================= */
+body {
+  background:
+    linear-gradient(180deg, #0c1f2e, #020b13),
+    var(--texture-noise);
+  background-blend-mode: overlay;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ================= HEADER ================= */
+header {
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+    url("https://images.unsplash.com/photo-1597008641621-bb3f6ddc5d80?auto=format&fit=crop&w=1920&q=80"),
+    var(--texture-concrete);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= MENU ================= */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background:
+    linear-gradient(90deg, #06131d, #0b2638),
+    var(--texture-noise);
+  background-blend-mode: overlay;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+nav h1 {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #00c3ff;
+  transition: 0.3s;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* ================= HERO ================= */
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+.hero-content {
+  max-width: 650px;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  margin: 20px 0 35px;
+  font-size: 1.1rem;
+  color: #d0d0d0;
+}
+
+.hero button {
+  padding: 15px 40px;
+  background:
+    linear-gradient(135deg, #00c3ff, #005bea),
+    var(--texture-paper);
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
+.hero button:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* ================= SECTIONS ================= */
+section {
+  padding: 100px 8%;
+  background:
+    linear-gradient(180deg, #071926, #020b13),
+    var(--texture-grain);
+  background-blend-mode: overlay;
+}
+
+section h3 {
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+}
+
+section p {
+  max-width: 800px;
+  line-height: 1.7;
+  color: #d5d5d5;
+}
+
+/* ================= SERVIÇOS ================= */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.service-card {
+  background:
+    linear-gradient(180deg, #0e2a3d, #06131d),
+    var(--texture-paper);
+  background-blend-mode: overlay;
+  padding: 40px 25px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.4s, box-shadow 0.4s;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.service-card:hover {
+  transform: translateY(-15px) scale(1.03);
+}
+
+.service-card h4 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+}
+
+/* ================= GALERIA ================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.5s, box-shadow 0.5s;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+}
+
+/* ================= CTA ================= */
+.cta {
+  text-align: center;
+  background:
+    linear-gradient(135deg, #003f66, #001a2b),
+    var(--texture-concrete);
+}
+
+.cta button {
+  margin-top: 30px;
+  padding: 18px 45px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: none;
+  background:
+    linear-gradient(135deg, #25D366, #128C7E),
+    var(--texture-paper);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.cta button:hover {
+  transform: scale(1.1);
+}
+
+/* ================= FOOTER ================= */
+footer {
+  padding: 40px 8%;
+  background:
+    linear-gradient(180deg, #020b13, #000),
+    var(--texture-noise);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25D366;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  animation: pulse 2s infinite;
+}
+
+/* ================= ANIMAÇÕES ================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* ================= RESPONSIVO ================= */
+@media(max-width:768px){
+  .hero h2 { font-size: 2.2rem; }
+  nav ul { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <h1>ATENDILAR REFRIGERAÇÃO</h1>
+  <ul>
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<header id="inicio">
+  <div class="hero">
+    <div class="hero-content">
+      <h2>Especialistas em Climatização de Alto Padrão</h2>
+      <p>Instalação, manutenção e higienização de sistemas de ar condicionado com excelência, tecnologia e confiança.</p>
+      <button onclick="contato()">Solicitar Orçamento</button>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <h3>Quem Somos</h3>
+  <p>
+    Somos uma empresa especializada em refrigeração e climatização, atuando com padrões elevados de qualidade,
+    segurança e eficiência. Atendemos residências, empresas e indústrias com soluções modernas e duradouras.
+  </p>
+</section>
+
+<section id="servicos">
+  <h3>Nossos Serviços</h3>
+  <div class="services">
+    <div class="service-card">
+      <h4>Instalação Profissional</h4>
+      <p>A instalação profissional garante melhor desempenho, economia de energia, segurança, maior vida útil do aparelho e evita problemas futuros..</p>
+    </div>
+    <div class="service-card">
+      <h4>Manutenção Preventiva</h4>
+      <p>Manutenção do ar condicionado melhora desempenho, economiza energia, evita falhas e garante saudável.</p>
+    </div>
+    <div class="service-card">
+      <h4>Higienização Completa</h4>
+      <p>Remove fungos e bactérias, melhora a qualidade do ar, evita alergias, elimina odores e aumenta a eficiência e a vida útil do ar condicionado.</p>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <h3>Galeria</h3>
+  <div class="gallery">
+    <img src="https://images.pexels.com/photos/7347538/pexels-photo-7347538.jpeg?_gl=1*146srs9*_ga*MTg3MjY3MTY0Ny4xNzcwNTExNDg2*_ga_8JE65Q40S6*czE3NzA1MTE0ODUkbzEkZzEkdDE3NzA1MTE2NTIkajU5JGwwJGgw">
+    <img src="https://cdn.pixabay.com/photo/2024/06/21/08/05/air-conditioner-8843842_1280.png">
+    <img src="https://images.unsplash.com/photo-1759772238012-9d5ad59ae637?q=80&w=823&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    <img src="https://images.unsplash.com/photo-1762341123870-d706f257a12e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+  </div>
+</section>
+
+<section class="cta" id="contato">
+  <h3>Solicite um Orçamento Agora</h3>
+  <button onclick="contato()">Falar no WhatsApp</button>
+</section>
+
+<footer>
+  © 2026 Refrigeração Premium • Todos os direitos reservados
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5522999114941" target="_blank">💬</a>
+
+<script>
+function contato(){
+  window.open("https://wa.me/5522999114941", "_blank");
+}
+</script>
+
+</body>
+</html>
